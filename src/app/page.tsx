@@ -1,91 +1,101 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from './page.module.css'
+'use client';
 
-const inter = Inter({ subsets: ['latin'] })
+import { Container, Grid, Title } from '@mantine/core';
+
+import './page.module.css';
+import BlogSuggestion from './features/blog/BlogSuggestion';
+import BlogHeader from './features/blog/BlogHeader';
+import BlogContent from './features/blog/BlogContent';
+import { useEffect, useState } from 'react';
+import BlogCommentSection from './features/blog/BlogCommentSection';
 
 export default function Home() {
+  const [blog, setBlog] = useState<any>(undefined);
+
+  const fetchBlog = async () => {
+    return await fetch('/api/blog', {
+      method: 'GET',
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setBlog(data);
+      });
+  };
+
+  useEffect(() => {
+    fetchBlog();
+  }, []);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <Container
+      className="container"
+      style={{
+        backgroundColor: '#111111',
+        minHeight: '100vh',
+      }}
+      px={'4rem'}
+      py={'2rem'}
+    >
+      {blog ? (
+        <Grid>
+          <Grid.Col span={8} id="content-section">
+            {/* Left Section */}
+            <BlogHeader
+              createdOn="2023-02-01"
+              title="The Mental Health Impacts of the Way We Live"
+              topic="Mental Health"
+              username={blog?.user?.username}
             />
-          </a>
+            <BlogContent
+              videoUrl="https://www.youtube.com/watch?v=QRZ_l7cVzzU"
+              content="In the post-pandemic era, there is a growing recognition that global health is a shared responsibility that
+        requires collaboration and solidarity across nations. Businesses have an important role to play in promoting
+        global health by investing in sustainable healthcare systems, supporting research and development of new
+        treatments and vaccines, and advocating for policies that promote health equity and access to healthcare."
+              likes={20}
+            />
+            <BlogCommentSection />
+          </Grid.Col>
+          <BlogSuggestion
+            items={[
+              {
+                title: 'The Mental Health Impacts of the Way We Live',
+                topic: 'Mental Health',
+                likes: 100,
+                comments: 200,
+                thumbnail: 'https://thumbs.dreamstime.com/b/education-study-books-high-school-university-16383080.jpg',
+              },
+              {
+                title: 'The Mental Health Impacts of the Way We Live',
+                topic: 'Mental Health',
+                likes: 100,
+                comments: 200,
+                thumbnail: 'https://thumbs.dreamstime.com/b/education-study-books-high-school-university-16383080.jpg',
+              },
+              {
+                title: 'The Mental Health Impacts of the Way We Live',
+                topic: 'Mental Health',
+                likes: 100,
+                comments: 200,
+                thumbnail: 'https://thumbs.dreamstime.com/b/education-study-books-high-school-university-16383080.jpg',
+              },
+              {
+                title: 'The Mental Health Impacts of the Way We Live',
+                topic: 'Mental Health',
+                likes: 100,
+                comments: 200,
+                thumbnail: 'https://thumbs.dreamstime.com/b/education-study-books-high-school-university-16383080.jpg',
+              },
+            ]}
+          />
+        </Grid>
+      ) : (
+        <div>
+          <Title order={1} color="white">
+            Loading...
+          </Title>
         </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-        <div className={styles.thirteen}>
-          <Image src="/thirteen.svg" alt="13" width={40} height={31} priority />
-        </div>
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={inter.className}>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p className={inter.className}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+      )}
+    </Container>
+  );
 }
