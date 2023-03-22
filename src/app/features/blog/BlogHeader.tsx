@@ -25,12 +25,12 @@ const BlogHeader = (props: BlogHeaderProps) => {
         {title}
       </Text>
       <Flex
-        direction={{ base: 'column', xs: 'column', md: 'row' }}
-        justify={{ md: 'space-between' }}
+        direction={{ base: 'column', xs: 'column', sm: 'row' }}
+        justify={{ sm: 'space-between' }}
         mt={'1rem'}
         mb={{
           base: '1rem',
-          md: '2rem',
+          sm: '2rem',
         }}
       >
         {/* info bar */}
