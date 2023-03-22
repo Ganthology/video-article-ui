@@ -11,6 +11,7 @@ export async function GET(request: Request) {
       likes: 100,
       user: {
         username: 'johndoe',
+        profileUrl: 'https://fujifilm-x.com/wp-content/uploads/2021/01/gfx100s_sample_04_thum-1.jpg',
       },
     }),
   );

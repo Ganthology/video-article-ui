@@ -76,6 +76,7 @@ export default function Home() {
               title={blog?.title}
               topic={blog?.topic}
               username={blog?.user?.username}
+              userProfileUrl={blog?.user?.profileUrl}
             />
             <BlogContent videoUrl={blog?.content.videoUrl} content={blog?.content.text} likes={20} />
             <BlogCommentSection />

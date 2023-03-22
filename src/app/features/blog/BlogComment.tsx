@@ -9,6 +9,7 @@ dayjs.extend(relativeTime);
 interface BlogCommentProps {
   content: string;
   username: string;
+  userProfileUrl: string;
   likes: number;
   liked?: boolean;
   pinned?: boolean;
@@ -16,12 +17,12 @@ interface BlogCommentProps {
 }
 
 const BlogComment = (props: BlogCommentProps) => {
-  const { content, likes, pinned, username, liked } = props;
+  const { content, likes, pinned, username, userProfileUrl, liked } = props;
 
   return (
     <Group spacing={'0.75rem'} align="flex-start" noWrap>
       <div>
-        <Avatar src="" alt="user-image" radius={'xl'} size={'sm'} />
+        <Avatar src={userProfileUrl} alt="user-image" radius={'xl'} size={'sm'} />
       </div>
       <div
         style={{

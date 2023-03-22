@@ -1,21 +1,26 @@
-import {
-  Textarea,
-  Flex,
-  Group,
-  ActionIcon,
-  Text,
-  Button,
-  Divider,
-  Avatar,
-  Badge,
-  Timeline,
-  Anchor,
-} from '@mantine/core';
-import { AiFillLike, AiTwotoneMessage } from 'react-icons/ai';
-import { TbPinnedFilled } from 'react-icons/tb';
+import { Textarea, Flex, Text, Button, Divider, Anchor } from '@mantine/core';
 import BlogComment from './BlogComment';
-import dayjs from 'dayjs';
 import BlogCommentTimeline from './BlogCommentTimeline';
+
+const mockComments = [
+  {
+    commentedOn: '2021-08-01T00:00:00.000Z',
+    content:
+      'Globalization is a multifaceted phenomenon that refers to the interconnectedness and integration of countries, economies, cultures, and people across the world. At its core, globalization is about the expansion and intensification of international trade, investment, communication, and travel, which has created a global marketplace and a global culture.',
+    likes: 20,
+    username: 'John Cena',
+    userProfileUrl: 'https://fujifilm-x.com/wp-content/uploads/2021/01/gfx100s_sample_04_thum-1.jpg',
+  },
+  {
+    commentedOn: '2022-08-01T00:00:00.000Z',
+    content:
+      'Globalization is a multifaceted phenomenon that refers to the interconnectedness and integration of countries, economies, cultures, and people across the world. At its core, globalization is about the expansion and intensification of international trade, investment, communication, and travel, which has created a global marketplace and a global culture.',
+    likes: 20,
+    liked: true,
+    username: 'John Cena',
+    userProfileUrl: 'https://fujifilm-x.com/wp-content/uploads/2021/01/gfx100s_sample_04_thum-1.jpg',
+  },
+];
 
 const BlogCommentSection = () => {
   return (
@@ -56,30 +61,13 @@ const BlogCommentSection = () => {
             content="Globalization is a multifaceted phenomenon that refers to the interconnectedness and integration of countries, economies, cultures, and people across the world. At its core, globalization is about the expansion and intensification of international trade, investment, communication, and travel, which has created a global marketplace and a global culture."
             likes={20}
             pinned={true}
-            username="Tester"
+            username="John Smith"
+            userProfileUrl=""
           />
         </div>
       </div>
       <Divider color="gray.8" />
-      <BlogCommentTimeline
-        items={[
-          {
-            commentedOn: '2021-08-01T00:00:00.000Z',
-            content:
-              'Globalization is a multifaceted phenomenon that refers to the interconnectedness and integration of countries, economies, cultures, and people across the world. At its core, globalization is about the expansion and intensification of international trade, investment, communication, and travel, which has created a global marketplace and a global culture.',
-            likes: 20,
-            username: 'Tester',
-          },
-          {
-            commentedOn: '2022-08-01T00:00:00.000Z',
-            content:
-              'Globalization is a multifaceted phenomenon that refers to the interconnectedness and integration of countries, economies, cultures, and people across the world. At its core, globalization is about the expansion and intensification of international trade, investment, communication, and travel, which has created a global marketplace and a global culture.',
-            likes: 20,
-            liked: true,
-            username: 'Tester',
-          },
-        ]}
-      />
+      <BlogCommentTimeline items={mockComments} />
       <Anchor onClick={() => {}} color="cyan.8" span weight={'normal'} size="sm" pl="1rem">
         Show more replies
       </Anchor>

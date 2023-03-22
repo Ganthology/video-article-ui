@@ -9,6 +9,7 @@ dayjs.extend(relativeTime);
 type BlogContent = {
   content: string;
   username: string;
+  userProfileUrl: string;
   likes: number;
   liked?: boolean;
   pinned?: boolean;
@@ -25,7 +26,10 @@ const BlogCommentTimeline = (props: BlogCommentTimelineProps) => {
   return (
     <Timeline mt={'1rem'} ml={'1rem'} mr={'1rem'} lineWidth={2} color="dark">
       {items.map((item) => (
-        <Timeline.Item bullet={<Avatar src="" alt="user-image" radius={'xl'} size={'sm'} />} key={item.commentedOn}>
+        <Timeline.Item
+          bullet={<Avatar src={item.userProfileUrl} alt="user-image" radius={'xl'} size={'sm'} />}
+          key={item.commentedOn}
+        >
           <Group spacing={'0.75rem'} align="flex-start" noWrap>
             <div
               style={{

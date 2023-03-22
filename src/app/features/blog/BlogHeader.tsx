@@ -9,13 +9,14 @@ dayjs.extend(relativeTime);
 
 interface BlogHeaderProps {
   username: string;
+  userProfileUrl: string;
   topic: string;
   title: string;
   createdOn: string;
 }
 
 const BlogHeader = (props: BlogHeaderProps) => {
-  const { username, topic, title, createdOn } = props;
+  const { username, userProfileUrl, topic, title, createdOn } = props;
   return (
     <>
       <Text component="h2" color="pink" size={'xs'} mt={0} mb={'0.5rem'}>
@@ -25,8 +26,8 @@ const BlogHeader = (props: BlogHeaderProps) => {
         {title}
       </Text>
       <Flex
-        direction={{ base: 'column', xs: 'column', sm: 'row' }}
-        justify={{ sm: 'space-between' }}
+        direction={{ base: 'column', xs: 'row', sm: 'row', md: 'row', lg: 'row' }}
+        justify={{ xs: 'space-between' }}
         mt={'1rem'}
         mb={{
           base: '1rem',
@@ -35,7 +36,7 @@ const BlogHeader = (props: BlogHeaderProps) => {
       >
         {/* info bar */}
         <Group spacing={8}>
-          <Avatar src="" alt="user-image" radius={'xl'} size={'sm'} />
+          <Avatar src={userProfileUrl} alt="user-image" radius={'xl'} size={'sm'} />
           <Group spacing={4}>
             <Text span color="gray.1" size={'xs'}>
               {username}
