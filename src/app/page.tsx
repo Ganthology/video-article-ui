@@ -38,7 +38,7 @@ export default function Home() {
     >
       {blog ? (
         <Grid>
-          <Grid.Col span={8} id="content-section">
+          <Grid.Col xs={12} md={8} id="content-section">
             {/* Left Section */}
             <BlogHeader
               createdOn="2023-02-01"

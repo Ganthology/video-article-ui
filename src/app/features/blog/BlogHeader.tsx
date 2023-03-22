@@ -24,7 +24,15 @@ const BlogHeader = (props: BlogHeaderProps) => {
       <Text component="h1" color="white" size={'xl'} mt={0} mb={'0.5rem'} inline>
         {title}
       </Text>
-      <Flex justify={'space-between'} mt={'1rem'} mb={'2rem'}>
+      <Flex
+        direction={{ base: 'column', xs: 'column', md: 'row' }}
+        justify={{ md: 'space-between' }}
+        mt={'1rem'}
+        mb={{
+          base: '1rem',
+          md: '2rem',
+        }}
+      >
         {/* info bar */}
         <Group spacing={8}>
           <Avatar src="" alt="user-image" radius={'xl'} size={'sm'} />

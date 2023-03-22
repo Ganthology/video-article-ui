@@ -15,7 +15,7 @@ const BlogSuggestion = (props: BlogSuggestionProps) => {
   const { items } = props;
 
   return (
-    <Grid.Col span={4}>
+    <Grid.Col xs={12} md={4}>
       <Text component="h4" size={'sm'} color="gray.2" my={0}>
         FOR YOU
       </Text>
